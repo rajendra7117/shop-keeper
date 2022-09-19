@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PaidIcon from "@mui/icons-material/Paid";
+import { NavLink } from "react-router-dom";
 const Home = () => {
   return (
     <div className="home">
@@ -45,14 +46,14 @@ const Home = () => {
         </div>
       </div>
       <div className="home-sec-2 flex-row">
-        <Paper className="flex-col">
-         <Button variant="contained">Sign in</Button>
+        <Paper className="flex-col" elevation={4} sx={{backgroundColor: "#6E85B7"}}>
+         <NavLink to="/register">Sign In</NavLink>
         </Paper>
-        <Paper className="flex-col">
-          <Button variant="contained">Login</Button>
+        <Paper className="flex-col" elevation={4} sx={{backgroundColor: "#6E85B7"}}>
+        <NavLink to="/login">Login In</NavLink>
         </Paper>
-        <Paper className="flex-col">
-          <Button variant="contained">Know more</Button>
+        <Paper className="flex-col" elevation={4} sx={{backgroundColor: "#6E85B7"}}>
+        <NavLink to="/">Know more</NavLink>
         </Paper>
       </div>
     </div>
