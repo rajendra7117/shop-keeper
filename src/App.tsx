@@ -7,7 +7,7 @@ import Header from "./components/Navigation/Header";
 import "./globalstyles/styles.css";
 import Layout from "./components/layout/Layout";
 import Signin from "./components/auth/Signin";
-import Login from "./components/auth/Login";
+
 import Sigin2 from "./components/auth/Sigin2";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<Signin />} />
             <Route path="/signin" element={<Sigin2 />}/>
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Sigin2 />} />
           </Routes>
         </Layout>
       </BrowserRouter>

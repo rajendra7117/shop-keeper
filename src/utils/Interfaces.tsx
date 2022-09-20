@@ -3,6 +3,7 @@ export interface inputProps {
     label: string;
     variant: "outlined";
     FieldId: string;
+    type: string ;
     onInput: (FieldId: string, value: string, isTouched: boolean, isValid: boolean) => any;
     validators: { type: string; value: string | number }[];
   }

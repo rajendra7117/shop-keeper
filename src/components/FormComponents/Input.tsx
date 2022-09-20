@@ -31,6 +31,7 @@ const Input = ({
   variant,
   FieldId,
   onInput,
+  type,
   validators,
 }: inputProps) => {
   let initialState: stateType = {
@@ -62,6 +63,7 @@ const Input = ({
       id={!state.isValid && state.isTouched ? "outlined-error" : id}
       label={label}
       variant={variant}
+      type={type || 'text'}
       sx={{ marginBottom: "1rem", width: "20rem" }}
       helperText={
         !state.isValid && state.isTouched

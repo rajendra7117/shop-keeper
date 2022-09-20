@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authSliceActions } from "../../redux/auth/slice";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_PASSWORD,
@@ -24,6 +27,8 @@ import useForm from "../hooks/FormHook";
 const Signin = () => {
   const [category, setCategory] = useState<string>("Grocery");
   const [categoryTouched, setCategoryTouched] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formState, changeHandler] = useForm({
     inputs: {
@@ -45,7 +50,19 @@ const Signin = () => {
     let isCatValid = category !== "" && categoryTouched;
     changeHandler("shopCategory", category, categoryTouched, isCatValid);
   }, [category, categoryTouched]);
-  console.log(formState);
+
+  const shopHandler = () => {
+    dispatch(
+      authSliceActions.setShopDetails({
+        shopName: formState.inputs.shopName.value,
+        operaterName: formState.inputs.operaterName.value,
+        shopLocation: formState.inputs.shopLocation.value,
+        shopCategory: formState.inputs.shopCategory.value,
+      })
+    );
+    navigate("/signin");
+  };
+
   return (
     <Box
       sx={{
@@ -67,6 +84,7 @@ const Signin = () => {
             label="shop-name"
             variant="outlined"
             FieldId="shopName"
+            type="text"
             onInput={changeHandler}
             validators={[VALIDATOR_REQUIRE()]}
           />
@@ -75,6 +93,7 @@ const Signin = () => {
             label="operater-name"
             variant="outlined"
             FieldId="operaterName"
+            type="text"
             onInput={changeHandler}
             validators={[VALIDATOR_REQUIRE()]}
           />
@@ -83,6 +102,7 @@ const Signin = () => {
             label="shop-location"
             variant="outlined"
             FieldId="shopLocation"
+            type="text"
             onInput={changeHandler}
             validators={[VALIDATOR_REQUIRE()]}
           />
@@ -108,6 +128,7 @@ const Signin = () => {
             variant="contained"
             color="success"
             disabled={!formState.isValid}
+            onClick={shopHandler}
           >
             Next
           </Button>

@@ -1,15 +1,35 @@
-import React from 'react'
-import {Box, Paper, Typography, Button} from '@mui/material'
-import Input from '../FormComponents/Input'
-import { VALIDATOR_EMAIL, VALIDATOR_PASSWORD, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../utils/Validators'
-import useForm from '../hooks/FormHook'
+import React from "react";
+import { Box, Paper, Typography, Button } from "@mui/material";
+import Input from "../FormComponents/Input";
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_PASSWORD,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from "../../utils/Validators";
+import { useLocation } from "react-router-dom";
+import useForm from "../hooks/FormHook";
 const Sigin2 = () => {
+  const [formState, changeHandler] = useForm({
+    inputs: {
+      email: { value: "", isTouched: "", isValid: false },
+      password: { value: "", isTouched: "", isValid: false },
+    },
+    isValid: false,
+  });
 
-    const [formState, changeHandler] = useForm({inputs: {
-        email: {value: '', isTouched: '', isValid: false},
-        password: {value: '', isTouched: '', isValid: false},
+  const location = useLocation();
 
-    }, isValid: false})
+  console.log(location.pathname);
+
+  const createAccount = () => {
+    if (location.pathname === "/signin") {
+      console.log("signin:", formState.inputs);
+    }
+    if (location.pathname === "/login") {
+      console.log("login:", formState.inputs);
+    }
+  };
   return (
     <Box
       sx={{
@@ -23,7 +43,9 @@ const Sigin2 = () => {
     >
       <Paper elevation={4} className="form-paper">
         <Typography variant="h6" mb={1}>
-          Create your shop account
+          {location.pathname === "/signin"
+            ? "Create your shop account"
+            : "Login"}
         </Typography>
         <form className="form">
           <Input
@@ -31,6 +53,7 @@ const Sigin2 = () => {
             label="email address"
             variant="outlined"
             FieldId="email"
+            type="text"
             onInput={changeHandler}
             validators={[VALIDATOR_REQUIRE(), VALIDATOR_EMAIL()]}
           />
@@ -39,18 +62,25 @@ const Sigin2 = () => {
             label="password"
             variant="outlined"
             FieldId="password"
+            type="password"
             onInput={changeHandler}
             validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(6)]}
           />
-          
-          
-          <Button variant="contained" color="success" disabled={!formState.isValid}>
-            Create Account
+
+          <Button
+            variant="contained"
+            color="success"
+            disabled={!formState.isValid}
+            onClick={createAccount}
+          >
+            {location.pathname === "/signin"
+              ? "Create your shop account"
+              : "Login"}
           </Button>
         </form>
       </Paper>
     </Box>
-  )
-}
+  );
+};
 
-export default Sigin2
+export default Sigin2;
