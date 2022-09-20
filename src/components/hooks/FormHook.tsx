@@ -14,6 +14,8 @@ let obj = {
   operaterName: "",
   shopLocation: "",
   shopCategory: "",
+  email: "",
+  password: ""
 };
 type objectKey = keyof typeof obj;
 

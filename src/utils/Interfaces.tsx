@@ -41,3 +41,15 @@ type Payload = {
   };
 
 export interface type2 {FieldId:string, value:string, isTouched:boolean, isValid:boolean}
+
+//products interfaces
+
+
+export interface product{
+  key: number,
+  id: number,
+  name: string,
+  price: string
+}
+
+

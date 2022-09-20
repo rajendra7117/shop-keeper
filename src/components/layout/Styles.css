@@ -1,8 +1,10 @@
-.layout{
-    width: 100% !important;
-    height: auto;
-   display: flex;
-    
-   
-
+.layout {
+  width: 100% !important;
+  height: auto;
+  display: flex;
+}
+.layout2 {
+  width: auto;
+  height: auto;
+  padding-top: 4rem;
 }

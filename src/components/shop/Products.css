@@ -1,0 +1,11 @@
+.products-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+    margin-inline: auto;
+}
+.product-div{
+    justify-content: space-around;
+    align-items: flex-start;
+}
