@@ -1,4 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_PASSWORD,
+  VALIDATOR_MAXLENGTH,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from "../../utils/Validators";
 import {
   TextField,
   Box,
@@ -10,14 +17,35 @@ import {
   MenuItem,
   Button,
 } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material";
 import "./Styles.css";
 import Input from "../FormComponents/Input";
+import useForm from "../hooks/FormHook";
 const Signin = () => {
-  const [category, setCategory] = useState<String | null>("Grocery");
+  const [category, setCategory] = useState<string>("Grocery");
+  const [categoryTouched, setCategoryTouched] = useState<boolean>(false);
 
-  const InputHandler = (FieldId: String, value: String, isTouched: boolean) => {
-   
+  const [formState, changeHandler] = useForm({
+    inputs: {
+      shopName: { value: "", isTouched: false, isValid: false },
+      operaterName: { value: "", isTouched: false, isValid: false },
+      shopLocation: { value: "", isTouched: false, isValid: false },
+      shopCategory: { value: "", isTouched: false, isValid: false },
+    },
+    isValid: false,
+  });
+
+  const categoryChangeHandler = (event: SelectChangeEvent<unknown>): void => {
+    setCategory(event.target.value as string);
   };
+  const blurHandler = () => {
+    setCategoryTouched(true);
+  };
+  useEffect(() => {
+    let isCatValid = category !== "" && categoryTouched;
+    changeHandler("shopCategory", category, categoryTouched, isCatValid);
+  }, [category, categoryTouched]);
+  console.log(formState);
   return (
     <Box
       sx={{
@@ -38,22 +66,25 @@ const Signin = () => {
             id="outlined-basic"
             label="shop-name"
             variant="outlined"
-            FieldId="shop-name"
-            onInput={InputHandler}
+            FieldId="shopName"
+            onInput={changeHandler}
+            validators={[VALIDATOR_REQUIRE()]}
           />
           <Input
             id="outlined-basic"
             label="operater-name"
             variant="outlined"
-            FieldId="operater-name"
-            onInput={InputHandler}
+            FieldId="operaterName"
+            onInput={changeHandler}
+            validators={[VALIDATOR_REQUIRE()]}
           />
           <Input
             id="outlined-basic"
             label="shop-location"
             variant="outlined"
-            FieldId="shop-location"
-            onInput={InputHandler}
+            FieldId="shopLocation"
+            onInput={changeHandler}
+            validators={[VALIDATOR_REQUIRE()]}
           />
 
           <FormControl>
@@ -62,7 +93,9 @@ const Signin = () => {
               labelId="shop-category-label"
               id="shop-category"
               value={category}
-              label="Category"
+              label="Select categoru"
+              onChange={categoryChangeHandler}
+              onBlur={blurHandler}
               sx={{ marginBottom: "1rem", width: "20rem" }}
             >
               <MenuItem value={"Grocery"}>Grocery</MenuItem>
@@ -71,7 +104,11 @@ const Signin = () => {
               <MenuItem value={"Bakery"}>Bakery</MenuItem>
             </Select>
           </FormControl>
-          <Button variant="contained" color="success">
+          <Button
+            variant="contained"
+            color="success"
+            disabled={!formState.isValid}
+          >
             Next
           </Button>
         </form>
