@@ -23,19 +23,19 @@ const SideBar = () => {
       sx={{
         width: drawerWidth,
         height: drawerHeight,
-    
+     
         "& .MuiDrawer-paper": {
           width: drawerWidth,
           boxSizing: "border-box",
         },
       }}
     >
-      <Typography variant="h5" sx={{ marginLeft: "2rem", marginTop: "2rem" }}>
+      <Typography variant="h5" sx={{ marginLeft: "2rem", marginTop: "2rem",    color: "#ffffff" }}>
         Menu
       </Typography>
       <List sx={{ marginTop: "3rem" }}>
         {arr.map((item: string) => (
-          <ListItem key={item} sx={{ width: "100%", paddingInline: 0 }}>
+          <ListItem key={item} sx={{ width: "100%", paddingInline: 0,    color: "#ffffff" }}>
             <ListItemButton
               className="list-button"
               sx={{ width: "100%", paddingInline: 0, textAlign: "center" }}
