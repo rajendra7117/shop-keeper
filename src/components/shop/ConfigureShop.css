@@ -1,0 +1,12 @@
+.link-box a{
+    text-decoration: none;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 0.2rem;
+}
+
+.link-box a:hover{
+    background-color: #ffffff;
+    color: #000000;
+}
+

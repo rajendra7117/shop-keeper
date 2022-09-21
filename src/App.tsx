@@ -12,6 +12,8 @@ import Sigin2 from "./components/auth/Sigin2";
 import ConfigureShop from "./components/shop/ConfigureShop";
 import AllProducts from "./components/shop/AllProducts";
 import ProductForm from "./components/shop/ProductForm";
+import AddPayment from "./components/Payments/AddPayment";
+import AllPayments from "./components/Payments/AllPayments";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route path="/configure" element={<ConfigureShop />}/>
             <Route path="/products/" element={<AllProducts />} />
             <Route path="/add-product" element={<ProductForm />}/>
+            <Route path="/payments" element={<AllPayments />}/>
+            <Route path="/add-payment" element={<AddPayment />}/>
           </Routes>
         </Layout>
       </BrowserRouter>

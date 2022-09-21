@@ -55,6 +55,7 @@ const Sigin2 = () => {
             FieldId="email"
             type="text"
             onInput={changeHandler}
+            defaultValue=""
             validators={[VALIDATOR_REQUIRE(), VALIDATOR_EMAIL()]}
           />
           <Input
@@ -63,7 +64,9 @@ const Sigin2 = () => {
             variant="outlined"
             FieldId="password"
             type="password"
+
             onInput={changeHandler}
+            defaultValue=""
             validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(6)]}
           />
 

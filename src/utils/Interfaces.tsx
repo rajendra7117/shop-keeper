@@ -4,6 +4,7 @@ export interface inputProps {
     variant: "outlined";
     FieldId: string;
     type: string ;
+    defaultValue: any;
     onInput: (FieldId: string, value: string, isTouched: boolean, isValid: boolean) => any;
     validators: { type: string; value: string | number }[];
   }

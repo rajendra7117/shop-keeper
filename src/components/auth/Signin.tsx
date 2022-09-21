@@ -86,6 +86,7 @@ const Signin = () => {
             FieldId="shopName"
             type="text"
             onInput={changeHandler}
+            defaultValue=""
             validators={[VALIDATOR_REQUIRE()]}
           />
           <Input
@@ -95,6 +96,7 @@ const Signin = () => {
             FieldId="operaterName"
             type="text"
             onInput={changeHandler}
+            defaultValue=""
             validators={[VALIDATOR_REQUIRE()]}
           />
           <Input
@@ -104,6 +106,7 @@ const Signin = () => {
             FieldId="shopLocation"
             type="text"
             onInput={changeHandler}
+            defaultValue=""
             validators={[VALIDATOR_REQUIRE()]}
           />
 

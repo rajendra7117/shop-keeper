@@ -1,20 +1,36 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Box, Paper, Typography, Button } from "@mui/material";
 import Input from "../FormComponents/Input";
 import useForm from "../hooks/FormHook";
+import { VALIDATOR_REQUIRE, VALIDATOR_MIN } from "../../utils/Validators";
+import { useSelector } from "react-redux";
+import { rootState } from "../../redux/store";
+
 const ProductForm = () => {
+
+  const isEditing = useSelector((state:rootState )  => state.products.isEditing)
+
+  const product = useSelector((state: rootState) => state.products.editingProduct)
+
+  console.log(product.name)
+  
   const [formState, changeHandler] = useForm({
     inputs: {
-      name: { value: "", isTouched: false, isValid: false },
-      price: { value: 0, isTouched: false, isValid: false },
-      defaultQuantity: { value: 0, isTouched: false, isValid: false },
+      name: { value: isEditing ? product.name : "", isTouched: false, isValid: false },
+      price: { value: isEditing ? product.price : 0, isTouched: false, isValid: false },
+      defaultQuantity: { value: isEditing ? 1:  0, isTouched: false, isValid: false },
     },
-    isValid: false
+    isValid: false,
   });
 
-  const addProduct = () => {
-
-  }
+  useEffect(() => {
+    if(isEditing){
+      changeHandler('name', product.name, false, true)
+      changeHandler('price', product.price, false, true)
+      changeHandler('defaultQuantity',"1", false, true)
+    }
+  }, [isEditing])
+  const addProduct = () => {};
   return (
     <Box
       sx={{
@@ -38,7 +54,8 @@ const ProductForm = () => {
             FieldId="name"
             type="text"
             onInput={changeHandler}
-            validators={[]}
+            defaultValue={formState.inputs.name.value}
+            validators={[VALIDATOR_REQUIRE()]}
           />
           <Input
             id="outlined-basic"
@@ -47,19 +64,19 @@ const ProductForm = () => {
             FieldId="price"
             type="number"
             onInput={changeHandler}
-            validators={[]}
+            defaultValue={formState.inputs.price.value}
+            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(2)]}
           />
           <Input
             id="outlined-basic"
             label="default quantity"
             variant="outlined"
-            FieldId="quantity"
+            FieldId="defaultQuantity"
             type="number"
             onInput={changeHandler}
-            validators={[]}
+            defaultValue={formState.inputs.defaultQuantity.value}
+            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(2)]}
           />
-        
-          
 
           <Button
             variant="contained"

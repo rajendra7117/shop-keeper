@@ -32,6 +32,7 @@ const Input = ({
   FieldId,
   onInput,
   type,
+  defaultValue,
   validators,
 }: inputProps) => {
   let initialState: stateType = {
@@ -48,6 +49,7 @@ const Input = ({
     });
   };
 
+  console.log(defaultValue)
   const blurHandler = () => {
     dispatch({ type: "TOUCHED", payload: { value: "", validators } });
   };
@@ -64,6 +66,7 @@ const Input = ({
       label={label}
       variant={variant}
       type={type || 'text'}
+      value={defaultValue ? defaultValue : ''}
       sx={{ marginBottom: "1rem", width: "20rem" }}
       helperText={
         !state.isValid && state.isTouched

@@ -1,6 +1,8 @@
 import React from "react";
 import Layout2 from "../layout/Layout2";
 import { Box, Typography, Paper, Button } from "@mui/material";
+import { NavLink } from "react-router-dom";
+import './ConfigureShop.css'
 
 
 const ConfigureShop = () => {
@@ -35,15 +37,15 @@ const ConfigureShop = () => {
             Hi Raj, Please configure your shop{" "}
           </Typography>
         </Box>
-        <Box sx={{ width: "100%", height: '50rem' }} className="flex-row">
+        <Box sx={{ width: "100%", height: '50rem' }} className="flex-row link-box">
           <Paper elevation={5} variant="outlined" sx={{width: "20rem", height: "15rem", justifyContent: 'center', backgroundColor: '#1B2430'}} className="flex-col">
-            <Button variant="contained" color="warning" >View All</Button>
+          <NavLink to="/products">View All</NavLink>
           </Paper>
           <Paper elevation={5} variant="outlined" sx={{width: "20rem", height: "15rem", justifyContent: 'center', backgroundColor: '#1B2430'}} className="flex-col">
-            <Button variant="contained" color="warning" >Quick Add</Button>
+          <NavLink to="/add-product">Qucik Add</NavLink>
           </Paper>
           <Paper elevation={5} variant="outlined" sx={{width: "20rem", height: "15rem", justifyContent: 'center', backgroundColor: '#1B2430'}} className="flex-col">
-            <Button variant="contained" color="warning" >Edit existing Product</Button>
+          <NavLink to="/products">Edit Product</NavLink>
           </Paper>
         </Box>
       </Box>
