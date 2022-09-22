@@ -54,3 +54,16 @@ export interface product{
 }
 
 
+
+
+//payments interfaces
+
+
+export interface PreviousPaymentProps {
+  icon1: any;
+  icon2: any;
+  icon3: any;
+  label1: string;
+  label2: string;
+  label3: string;
+};

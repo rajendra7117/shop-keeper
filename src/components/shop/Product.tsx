@@ -5,32 +5,32 @@ import { product } from "../../utils/Interfaces";
 import { productSliceActions } from "../../redux/products/productsSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ProductPaper1Sx, ProductPaper2Sx } from "./Styles";
 
 const Product = ({ id, key, name, price }: product) => {
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const editProduct = () => {
-    dispatch(productSliceActions.setEditing({id, name, price}))
-    navigate('/add-product')
-  }
+    dispatch(productSliceActions.setEditing({ id, name, price }));
+    navigate("/add-product");
+  };
   return (
     <Paper
       elevation={5}
-      sx={{ width: "15rem", height: "14rem", justifyContent: "space-around" }}
+      sx={ProductPaper1Sx}
       className="flex-col"
     >
       <Stack spacing={2}>
         <Paper
           elevation={3}
-          sx={{ width: "13rem", textAlign: "center", marginTop: "0.7rem" }}
+          sx={ProductPaper2Sx}
         >
           <Typography variant="h6">{name}</Typography>
         </Paper>
         <Paper
           elevation={3}
-          sx={{ width: "13rem", textAlign: "center", marginTop: "0.7rem" }}
+          sx={ProductPaper2Sx}
         >
           <Typography variant="h6">{price}</Typography>
         </Paper>

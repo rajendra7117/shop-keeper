@@ -4,6 +4,7 @@ import { Box, Typography} from "@mui/material";
 import Layout2 from "../layout/Layout2";
 import Product from "./Product";
 import InventoryIcon from '@mui/icons-material/Inventory';
+import { AllProductsBoxSx } from "./Styles";
 const AllProducts = () => {
   let products = [
     { id: 1, name: "gun", price: "50" },
@@ -14,7 +15,7 @@ const AllProducts = () => {
   ];
   return (
     <Layout2>
-      <Box sx={{ width: "89.6vw", heigth: "auto", marginTop: '2rem' }}>
+      <Box sx={AllProductsBoxSx}>
       <Typography variant="h4" sx={{margin: '1rem auto', width: '25rem'}}> Available Products <InventoryIcon fontSize="medium" sx={{marginTop: '2rem'}} /></Typography>
         <Box  sx={{ width: "90%" }} className="products-container">
         

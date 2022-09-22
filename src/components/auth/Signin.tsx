@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authSliceActions } from "../../redux/auth/slice";
-import {
-  VALIDATOR_EMAIL,
-  VALIDATOR_PASSWORD,
-  VALIDATOR_MAXLENGTH,
-  VALIDATOR_MINLENGTH,
-  VALIDATOR_REQUIRE,
-} from "../../utils/Validators";
+import { VALIDATOR_REQUIRE } from "../../utils/Validators";
 import {
   TextField,
   Box,
@@ -24,6 +18,7 @@ import { SelectChangeEvent } from "@mui/material";
 import "./Styles.css";
 import Input from "../FormComponents/Input";
 import useForm from "../hooks/FormHook";
+import { GlobalFormBoxSx } from "../../Styles";
 const Signin = () => {
   const [category, setCategory] = useState<string>("Grocery");
   const [categoryTouched, setCategoryTouched] = useState<boolean>(false);
@@ -65,14 +60,7 @@ const Signin = () => {
 
   return (
     <Box
-      sx={{
-        paddingTop: "6rem",
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      sx={GlobalFormBoxSx}
     >
       <Paper elevation={4} className="form-paper">
         <Typography variant="h6" mb={1}>

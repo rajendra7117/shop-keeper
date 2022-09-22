@@ -9,6 +9,7 @@ import {
 } from "../../utils/Validators";
 import { useLocation } from "react-router-dom";
 import useForm from "../hooks/FormHook";
+import { GlobalFormBoxSx } from "../../Styles";
 const Sigin2 = () => {
   const [formState, changeHandler] = useForm({
     inputs: {
@@ -32,14 +33,7 @@ const Sigin2 = () => {
   };
   return (
     <Box
-      sx={{
-        paddingTop: "6rem",
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      sx={GlobalFormBoxSx}
     >
       <Paper elevation={4} className="form-paper">
         <Typography variant="h6" mb={1}>
